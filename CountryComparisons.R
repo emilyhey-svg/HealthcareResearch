@@ -55,7 +55,7 @@ CountriesExpense_factored %>%
 ###################
 ## Personal Data ##
 ###################
-personaldata <- read_csv("../Countries Expense in USD/Recent Files/personalpercapita.csv") 
+personaldata <- read_csv("../personalpercapita.csv") 
 
 # Display the first few lines of the data
 writeLines("\nCountries Expense data samples:")
@@ -98,10 +98,8 @@ ggplot(costs_melted, aes(x = Year, y = value, fill = variable)) +
   theme_minimal() +
   ggtitle("U.S. Healthcare Cost Breakdown (per capita)")
 
-
-
 # adding the Netherlands total cost
-netherlands_costs <- read_csv("../Comparisons/TotalNetherlandsExpenseperCapita.csv")
+netherlands_costs <- read_csv("../TotalNetherlandsExpenseperCapita.csv")
 netherlands_costs$Year <- as.factor(netherlands_costs$Year)
 
 # Rename the columns to match the US data
@@ -124,8 +122,6 @@ ggplot(combined_data, aes(x = Year, y = value, fill = Country)) +
   theme_minimal()
 
 
-
-
 # Specifically Drug Prices
 
 # US
@@ -133,7 +129,7 @@ rxUS <- costs_melted[33:40,]
 rxUS <- rxUS %>% rename(U.S. = value)
 
 # Netherlands
-rxN <- read_csv("../Comparisons/NetherlandsDrugPrices.csv")
+rxN <- read_csv("../NetherlandsDrugPrices.csv")
 rxN$Year <- as.factor(rxN$Year)
 
 data <- data.frame(rxUS, rxN, "Year")
